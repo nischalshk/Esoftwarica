@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,20 +17,15 @@ import com.aboveall.esoftwarica.R;
 
 public class AbtFragment extends Fragment {
 
-    private AbtViewModel abtViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        abtViewModel =
-                ViewModelProviders.of(this).get(AbtViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_student, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        abtViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        View root = inflater.inflate(R.layout.fragment_abt, container, false);
+        WebView webView = root.findViewById(R.id.webView);
+        webView.loadUrl("http://softwarica.edu.np");
+
+
         return root;
     }
 }
