@@ -31,18 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentFragment extends Fragment {
-
-    private EditText etName,etAge,etAddress;
-    private Button btnSave;
-    private RadioButton rbmale,rbfemale;
+    EditText etName,etAge,etAddress;
+    Button btnSave;
+    RadioButton rbmale,rbfemale;
     RadioGroup radioGroup;
-    private TextView tvGender;
-   // private ImageView imageView;
-    private RecyclerView studenRecyclerView;
+    RecyclerView studentRecyclerView;
 
-    static List<Students> studentsList=new ArrayList<>();
-
-
+    static List<Students> studentsList =new ArrayList<>();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -54,60 +49,50 @@ public class StudentFragment extends Fragment {
         btnSave = root.findViewById(R.id.btnSave);
         rbmale = root.findViewById(R.id.rbmale);
         rbfemale = root.findViewById(R.id.rbfemale);
-        tvGender= root.findViewById(R.id.tvGender);
         radioGroup= root.findViewById(R.id.radioGroup);
-        //imageView = root.findViewById(R.id.imageView);
-        studenRecyclerView=root.findViewById(R.id.studentRecycler);
-
-         final List<Students> studentsList = new ArrayList<>();
-
-
+        studentRecyclerView=root.findViewById(R.id.studentRecycler);
+        final List<Students>[] studentsList = new List[]{new ArrayList<>()};
 
 btnSave.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         String name,address,gender,age;
-       // int image;
+        if (!etName.getText().toString().isEmpty()) {
+            name = etName.getText().toString();
+            if (!etAge.getText().toString().isEmpty()) {
+                age = (etAge.getText().toString());
+                if (!etAddress.getText().toString().isEmpty()) {
+                    address = (etAddress.getText().toString());
+                    try {
+                        int selectGender = radioGroup.getCheckedRadioButtonId();
+                        RadioButton radioButton = root.findViewById(selectGender);
+                        gender = radioButton.getText().toString();
 
-        name=etName.getText().toString();
-        address=etAddress.getText().toString();
-        age=etAge.getText().toString();
-      //  image=Integer.parseInt(imageView.getTransitionName());
+                        Students students = new Students(name, age, address, gender);
+                        studentsList[0] =students.getStudentsList();
+                        studentsList[0].add(students);
+                        students.setStudentsList(studentsList[0]);
+                        Toast.makeText(getActivity(), "Save Successful", Toast.LENGTH_SHORT).show();
 
-        //gender=etName.getText().toString();
 
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Please Select address", Toast.LENGTH_SHORT).show();
 
-            int selectGender=radioGroup.getCheckedRadioButtonId();
-            RadioButton radioButton=root.findViewById(selectGender);
-            gender=radioButton.getText().toString();
-
-         /*   if (rbmale.isChecked()) {
-                //ImageView imageView=(ImageView) findViewById(R.id.imageView);
-                tvGender.setText("Male");
-                imageView.setImageResource(R.drawable.ic_person_black_24dp);
-            } else if (rbfemale.isChecked()) {
-                tvGender.setText("Female");
-                imageView.setImageResource(R.drawable.ic_adb_black_24dp);
+                }
+            } else {
+                Toast.makeText(getActivity(), "Please Enter age", Toast.LENGTH_SHORT).show();
             }
-        }*/
+        } else {
+            Toast.makeText(getActivity(), "Please Enter name", Toast.LENGTH_SHORT).show();
 
-         Students students=new Students(name,age,address,gender);
-         studentsList=students.getStudentsList();
-         studentsList.add(students);
-         students.setStudentsList(studentsList);
-            Toast.makeText(getActivity(), "Save Successful", Toast.LENGTH_SHORT).show();
-
-
-          //  Toast.makeText(StudentFragment.this, "The Data is Saved", Toast.LENGTH_SHORT).show();
         }
 
-
+    }
 
 });
-
-
-
-
         return root;
     }
 }

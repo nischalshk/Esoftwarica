@@ -31,9 +31,6 @@ public class HomeFragment extends Fragment {
    
     private RecyclerView recyclerView;
     static List<Students> studentsList=new ArrayList<>();
-    //private ImageView imageView;
-
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,22 +39,19 @@ public class HomeFragment extends Fragment {
         
         recyclerView=root.findViewById(R.id.studentRecycler);
         
-        Students students=new Students("1","a","a","male");
+        Students students=new Students("1","a","a","Male");
         
-        studentsList= Students.getStudentsList();
+        studentsList= students.getStudentsList();
         if(studentsList.isEmpty()) {
-            studentsList.add(new Students("Nischal", "12", "asdf", "male"));
+            studentsList.add(new Students("Nischal", "12", "asdf", "Male"));
+            studentsList.add(new Students("Rachal", "11", "asdf", "Female"));
             students.setStudentsList(studentsList);
         }
 
         StudentAdapter studentAdapter = new StudentAdapter(getActivity(),studentsList);
         recyclerView.setAdapter(studentAdapter);
 
-        //Display all the contacts in linear layour (vertically)
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-
         return root;
     }
 }

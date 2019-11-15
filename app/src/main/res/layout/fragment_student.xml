@@ -4,14 +4,136 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".BottomNav">
+    android:background="@color/colorPrimaryDark"
+    >
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/studentRecycler"
-       />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_vertical"
+        android:layout_margin="30dp"
+
+        app:cardCornerRadius="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="18dp"
+
+                    tools:layout_editor_absoluteX="40dp"
+                    tools:layout_editor_absoluteY="65dp" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age"
+                    android:textSize="18dp"
+                    tools:layout_editor_absoluteX="40dp"
+                    tools:layout_editor_absoluteY="65dp" />
+
+                <EditText
+                    android:id="@+id/etAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                     />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="18dp"
+                    tools:layout_editor_absoluteX="40dp"
+                    tools:layout_editor_absoluteY="65dp" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                     />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Gender:"
+                android:textSize="18dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbmale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textSize="18dp"/>
+
+                    <RadioButton
+                        android:id="@+id/rbfemale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:textSize="18dp"/>
+                </RadioGroup>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:textSize="18dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
