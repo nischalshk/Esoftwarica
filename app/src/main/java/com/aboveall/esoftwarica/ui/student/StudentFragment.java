@@ -37,7 +37,7 @@ public class StudentFragment extends Fragment {
     private RadioButton rbmale,rbfemale;
     RadioGroup radioGroup;
     private TextView tvGender;
-    private ImageView imageView;
+   // private ImageView imageView;
     private RecyclerView studenRecyclerView;
 
     static List<Students> studentsList=new ArrayList<>();
@@ -56,7 +56,7 @@ public class StudentFragment extends Fragment {
         rbfemale = root.findViewById(R.id.rbfemale);
         tvGender= root.findViewById(R.id.tvGender);
         radioGroup= root.findViewById(R.id.radioGroup);
-        imageView = root.findViewById(R.id.imageView);
+        //imageView = root.findViewById(R.id.imageView);
         studenRecyclerView=root.findViewById(R.id.studentRecycler);
 
          final List<Students> studentsList = new ArrayList<>();
@@ -76,7 +76,6 @@ btnSave.setOnClickListener(new View.OnClickListener() {
 
         //gender=etName.getText().toString();
 
-        if (v.getId()==R.id.btnSave) {
 
             int selectGender=radioGroup.getCheckedRadioButtonId();
             RadioButton radioButton=root.findViewById(selectGender);
@@ -105,6 +104,7 @@ btnSave.setOnClickListener(new View.OnClickListener() {
 
 
 });
+
 
 
 

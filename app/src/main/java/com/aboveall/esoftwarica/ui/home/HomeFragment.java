@@ -29,9 +29,9 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
    
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     static List<Students> studentsList=new ArrayList<>();
-    private ImageView imageView;
+    //private ImageView imageView;
 
 
 
@@ -42,11 +42,11 @@ public class HomeFragment extends Fragment {
         
         recyclerView=root.findViewById(R.id.studentRecycler);
         
-        Students students=new Students("1","a","a","male",1);
+        Students students=new Students("1","a","a","male");
         
-        studentsList=students.getStudentsList();
+        studentsList= Students.getStudentsList();
         if(studentsList.isEmpty()) {
-            studentsList.add(new Students("Nischal", "12", "asdf", "male", 1));
+            studentsList.add(new Students("Nischal", "12", "asdf", "male"));
             students.setStudentsList(studentsList);
         }
 
