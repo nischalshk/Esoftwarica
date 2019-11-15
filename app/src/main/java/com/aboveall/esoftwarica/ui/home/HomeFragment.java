@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,40 +16,48 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.aboveall.esoftwarica.R;
+import com.aboveall.esoftwarica.adapter.StudentAdapter;
+import com.aboveall.esoftwarica.ui.student.Students;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private TextView tvName,tvAge,tvAddress,tvGender;
-    private Button btnDelete;
+   
+    RecyclerView recyclerView;
+    static List<Students> studentsList=new ArrayList<>();
     private ImageView imageView;
-   // private HomeViewModel homeViewModel;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-      //  homeViewModel =
-        //        ViewModelProviders.of(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        //final TextView textView = root.findViewById(R.id.text_home);
+        
+        recyclerView=root.findViewById(R.id.studentRecycler);
+        
+        Students students=new Students("1","a","a","male",1);
+        
+        studentsList=students.getStudentsList();
+        if(studentsList.isEmpty()) {
+            studentsList.add(new Students("Nischal", "12", "asdf", "male", 1));
+            students.setStudentsList(studentsList);
+        }
 
-        tvName = root.findViewById(R.id.tvName);
-        tvAge = root.findViewById(R.id.tvAge);
-        tvAddress = root.findViewById(R.id.tvAddress);
-        tvGender = root.findViewById(R.id.tvGender);
-        btnDelete = root.findViewById(R.id.btnDelete);
-        imageView = root.findViewById(R.id.imageView);
+        StudentAdapter studentAdapter = new StudentAdapter(getActivity(),studentsList);
+        recyclerView.setAdapter(studentAdapter);
+
+        //Display all the contacts in linear layour (vertically)
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
 
-
-      /*  homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
-            }
-        });*/
         return root;
     }
 }
